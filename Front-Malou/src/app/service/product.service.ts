@@ -38,6 +38,9 @@ export class ProductService {
   }
 
   //Fonction pour Pie-Chart
+  //J'ai essayer avec les requetes avec les api mais ca ne fonctionne pas
+  //Et je suis au courant que plusieurs boucles ne seras pas vraiment la manière approprié s'il y a des données massives
+  //Mais je voulais juste adapter pour celle-ci
   //Fonction pour regrouper tout les topics des posts dans une array avec le nom arrayTopic
   sortWithTopic(){
     var posts = this.actuals_posts.posts;
