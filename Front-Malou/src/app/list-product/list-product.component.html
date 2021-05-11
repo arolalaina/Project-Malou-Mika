@@ -1,0 +1,140 @@
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+    </svg>
+</div>
+
+<div id="main-wrapper">
+    <header class="topbar">
+        <nav class="navbar top-navbar navbar-expand-md navbar-light">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                    <b>
+                        <img src="../assets/images/logoP.png" alt="homepage" class="dark-logo" />
+                        <img src="../assets/images/logoP.png" alt="homepage" class="light-logo" />
+                    </b>
+                    <span>
+                        Product Hunt</span> </a>
+            </div>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav mr-auto mt-md-0">
+                    <li class="nav-item"> <a
+                            class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark"
+                            href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                    <li class="nav-item"> <a
+                            class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark"
+                            href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+    <aside class="left-sidebar">
+        <div class="scroll-sidebar">
+            <div class="user-profile" style="background: url(../assets/images/test2.png) no-repeat;">
+                <div class="profile-img"> <img src="../assets/images/user.png" alt="user" /> </div>
+                <div class="profile-text"> <a href="#" aria-haspopup="true" aria-expanded="true">Administrateur</a>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <li class="nav-small-cap">Toutes les catégories</li>
+                    <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
+                                class="mdi mdi-access-point"></i><span class="hide-menu">Produits </span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="/list">Acceuil</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <div class="col-md-5 col-8 align-self-center">
+                    <h3 class="text-info m-b-0 m-t-0">Produits</h3>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">Produits</li>
+                        <li class="breadcrumb-item active"><a href="#">Acceuil</a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Recherche de produits</h3>
+                            <div class="col-md-6">
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="Choisissez une date"
+                                        [(ngModel)]="criteria_date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <br>
+                                <button (click)=search_via_date()
+                                    class="btn btn-success btn-md waves-effect waves-light"
+                                    type="submit">Continuez</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">List des produits a ce jour</h4>
+                            <mat-form-field>
+                                <mat-label>Recherche</mat-label>
+                                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                            </mat-form-field>
+                            <div class="mat-elevation-z8" *ngIf="dataReady">
+                                <table mat-table [dataSource]="dataSource" matSort>
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="product_state">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Etat produit </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.product_state}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="tagline">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Slogan </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.tagline}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="day">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Jour </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.day}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="votes">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombres de votes </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.votes_count}} </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    <tr class="mat-row" *matNoDataRow>
+                                        <td class="mat-cell" colspan="4">Aucun produit trouvé </td>
+                                    </tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Pie Chart</h4>
+                            <canvas *ngIf="dataReady" baseChart [data]="pieChartData" [labels]="pieChartLabels"
+                                [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

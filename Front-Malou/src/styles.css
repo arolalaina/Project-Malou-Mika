@@ -1,0 +1,24 @@
+/*Normal Color*/
+/*Extra Variable*/
+/*Preloader*/
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+
+
+:root {
+    --main-blue: #2196f3;
+    --grey-bg: #cfd8dc;
+    --light-grey-bg: #f8f8f8;
+    --text-dark: #212121;
+    --input-background: #f1f5f7;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: white;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
