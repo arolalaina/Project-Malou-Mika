@@ -11,7 +11,8 @@ Je tiens a préciser les versions que j'ai utilisé pour le projet :
 --->Pour le back, il faudra aussi vérifier le port 3000 sur votre ordinateur.
 Si celle-ci n'est pas libre, il faudra aller dans Back-Malou/bin/. Vous allez apercevoir un fichier www. Il faut l'editer avec un editeur de code et aller vers la ligne 15
 var port = normalizePort(process.env.PORT || '3000');
-Changez le port 3000 par celle que vous voulez
+Changez le port 3000 par celle que vous voulez.
+
 -IMPORTANT-- si vous changez ce port, il faudra revenir vers le front pour changer le variable d'environement apiURl.
 -Pour cela, allez vers Front-Malou\src\environments, editez les 2 fichiers d'environement en changeant la ligne suivante 
 apiUrl: 'http://localhost:3000/products/' Changez 3000 par le port de votre nodeJs
